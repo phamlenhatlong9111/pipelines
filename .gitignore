@@ -1,0 +1,9 @@
+/.vs
+/Application/obj
+/Application/bin
+/Persistence/bin
+/Persistence/obj
+/Domain/bin
+/Domain/obj
+/PhuongTienDoNhom2/bin
+/PhuongTienDoNhom2/obj

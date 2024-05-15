@@ -1,0 +1,193 @@
+﻿@page
+@model PhuongTienDoNhom2.Pages.QuanTriHeThong.ToChucKDHCTN.IndexModel
+@{
+}
+<div class="cus-form-general">
+    <div class="titleTable">
+        <div class="groupQuanLy">
+            <div class="titlePage filterDT">
+                <span class="TrangChu title-layout title-area">Tổ chức kiểm định hiệu chuẩn thử nghiệm</span>
+            </div>
+        </div>
+        <div class="text-right">
+            <div class="group-button-action">
+                <button type="button" class="btn btn-success" data-toggle="modal" id="btn-themmoi">Thêm mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="table-tree-wrapper table-pagination-outside">
+        <div style="width:100%; margin:0 auto;">
+            <table id="dataGridToChucKDTCTN" class="table-border row-border compact dataTable data-tableCustom" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Stt</th>
+                        <th>Mã định danh</th>
+                        <th>Tên tổ chức</th>
+                        <th>Thông tin liên hệ</th>
+                        @* <th>Số giấy chứng nhận</th> *@
+                        <th>Hoạt động</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal add-->
+<div class="modal fade" id="modalToChucKDTCTNAdd" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mã định danh</label>
+                        <input type="text" class="form-control" id="maDinhDanhAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên tổ chức<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="tenToChucAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Giới thiệu</label>
+                        <textarea id="gioiThieuAdd" class="form-control" maxlength="4000"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Điện thoại</label>
+                        <input type="text" class="form-control" id="dienThoaiAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Hộp thư</label>
+                        <input type="text" class="form-control" id="hopThuAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Người liên hệ</label>
+                        <input type="text" class="form-control" id="nguoiLienHeAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Chức vụ</label>
+                        <input type="text" class="form-control" id="chucVuAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="diaChiAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group radioCustom">
+                        <div class="row">
+                            <label>Hoạt động</label>
+                            <div class="ck-trangThai">
+                                <input type="checkbox" id="suDungToChucKDTCTNAdd">
+                                <label for="ckSuDung">Sử dụng</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-KieuAdd">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-KDTCTNAdd">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal update-->
+<div class="modal fade" id="modalToChucKDTCTNUpdate" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" class="form-control" id="idKieuUpdate">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Chỉnh sửa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mã định danh</label>
+                        <input class="form-control" id="maToChucUpdate"  hidden/>
+                        <input type="text" class="form-control" id="maDinhDanhUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên tổ chức<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="tenToChucUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Giới thiệu</label>
+                        <textarea id="gioiThieuUpdate" class="form-control" maxlength="4000"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Điện thoại</label>
+                        <input type="text" class="form-control" id="dienThoaiUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Hộp thư</label>
+                        <input type="text" class="form-control" id="hopThuUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Người liên hệ</label>
+                        <input type="text" class="form-control" id="nguoiLienHeUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Chức vụ</label>
+                        <input type="text" class="form-control" id="chucVuUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="diaChiUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group radioCustom">
+                        <div class="row">
+                            <label>Hoạt động</label>
+                            <div class="ck-trangThai">
+                                <input type="checkbox" id="suDungToChucKDTCTNUpdate">
+                                <label for="ckSuDung">Sử dụng</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-KieuUpdate">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-KDTCTNUpdate">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* MODAL DELETE*@
+<div class="modal fade" id="modalDeleteToChuc" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <div class="modal-icon-delete">
+                        <i class="icon icon-ic_fluent_delete_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idToChucDelete">
+                    <div class="notiDelDn">Bạn có chắc chắn muốn xóa kiểu phương tiện đo</div>
+                    <h6 class="titleDnDelete" id="titleDel"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" id="delete_ToChuKDHCTN" class="btn btn-unsetwidth btn-danger text-white">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/pages/ThietLap/ToChucKDHCTN/index.js"></script>
+}
+

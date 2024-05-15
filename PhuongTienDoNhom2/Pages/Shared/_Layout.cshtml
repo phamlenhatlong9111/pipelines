@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]Phương tiện đo lường</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PhuongTienDoNhom2.styles.css" asp-append-version="true" />
+    <link href="~/lib/css/adminlte.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/datatables.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/checkboxes.css" rel="stylesheet" />
+    <link href="~/lib/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/lib/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/lib/select2/select2-bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/css/animate.min.css" rel="stylesheet" />
+    <link href="~/lib/font/fontawesome-free-6.2.0-web/css/all.css" rel="stylesheet" />
+    <link href="~/lib/font/fontawesome-free-6.2.0-web/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/pagination/pagination.css" rel="stylesheet" />
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/exportexcel/buttons.datatables.min.css" rel="stylesheet" />
+    <link href="~/lib/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/leaflet/leaflet.css" />
+    <link href="~/lib/css/fluentsystemicons-filled.css" rel="stylesheet" />
+    <link href="~/lib/css/fluentsystemicons-regular.css" rel="stylesheet" />
+</head>
+@*sidebar-collapse*@
+<body class="sidebar-mini">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery-3.5.1.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/pagination/pagination.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/js/adminlte.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery/dist/dataTables.fixedColumns.min.js"></script>
+    <script src="~/lib/jquery/dist/dataTables.rowGroup.min.js"></script>
+    <script src="~/lib/jquery/dist/dataTables.rowsGroup.js"></script>
+    <script src="~/lib/datatables/checkboxes.min.js"></script>
+    <script src="~/lib/datetimepicker/moment-with-locales.min.js"></script>
+    <script src="~/lib/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/lib/js/bootstrap-notify.min.js"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/lib/ckeditor/ckconfig.js"></script>
+    <script src="~/lib/select2/select2.min.js"></script>
+    <script src="~/lib/select2/i18n/vi.js"></script>
+    <script src="~/pages/Layout.js"></script>
+    <script src="~/lib/js/highcharts1.js"></script>
+    <script src="~/lib/js/variable-pie.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/lib/datatables/exportexcel/datatables.buttons.min.js"></script>
+    <script src="~/lib/datatables/exportexcel/jszip.min.js"></script>
+    <script src="~/lib/datatables/exportexcel/pdfmake.min.js"></script>
+    <script src="~/lib/datatables/exportexcel/buttons.html5.min.js"></script>
+    <script src="~/lib/datatables/exportexcel/buttons.print.min.js"></script>
+    <script src="~/lib/swiper/swiper-bundle.min.js"></script>
+    <script src="~/lib/leaflet/leaflet.js"></script>
+    <script src="~/lib/js/particles.min.js"></script>
+
+    <div class="preloader">
+        <div class="treeloader">
+            <svg class="pl" viewBox="0 0 128 128" width="128px" height="128px">
+                <defs>
+                    <linearGradient id="pl-grad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#000" />
+                        <stop offset="100%" stop-color="#fff" />
+                    </linearGradient>
+                    <mask id="pl-mask">
+                        <rect x="0" y="0" width="128" height="128" fill="url(#pl-grad)" />
+                    </mask>
+                </defs>
+                <g stroke-linecap="round" stroke-width="8" stroke-dasharray="32 32">
+                    <g stroke="hsl(193,90%,50%)">
+                        <line class="pl__line1" x1="4" y1="48" x2="4" y2="80" />
+                        <line class="pl__line2" x1="19" y1="48" x2="19" y2="80" />
+                        <line class="pl__line3" x1="34" y1="48" x2="34" y2="80" />
+                        <line class="pl__line4" x1="49" y1="48" x2="49" y2="80" />
+                        <line class="pl__line5" x1="64" y1="48" x2="64" y2="80" />
+                        <g transform="rotate(180,79,64)">
+                            <line class="pl__line6" x1="79" y1="48" x2="79" y2="80" />
+                        </g>
+                        <g transform="rotate(180,94,64)">
+                            <line class="pl__line7" x1="94" y1="48" x2="94" y2="80" />
+                        </g>
+                        <g transform="rotate(180,109,64)">
+                            <line class="pl__line8" x1="109" y1="48" x2="109" y2="80" />
+                        </g>
+                        <g transform="rotate(180,124,64)">
+                            <line class="pl__line9" x1="124" y1="48" x2="124" y2="80" />
+                        </g>
+                    </g>
+                    <g stroke="hsl(283,90%,50%)" mask="url(#pl-mask)">
+                        <line class="pl__line1" x1="4" y1="48" x2="4" y2="80" />
+                        <line class="pl__line2" x1="19" y1="48" x2="19" y2="80" />
+                        <line class="pl__line3" x1="34" y1="48" x2="34" y2="80" />
+                        <line class="pl__line4" x1="49" y1="48" x2="49" y2="80" />
+                        <line class="pl__line5" x1="64" y1="48" x2="64" y2="80" />
+                        <g transform="rotate(180,79,64)">
+                            <line class="pl__line6" x1="79" y1="48" x2="79" y2="80" />
+                        </g>
+                        <g transform="rotate(180,94,64)">
+                            <line class="pl__line7" x1="94" y1="48" x2="94" y2="80" />
+                        </g>
+                        <g transform="rotate(180,109,64)">
+                            <line class="pl__line8" x1="109" y1="48" x2="109" y2="80" />
+                        </g>
+                        <g transform="rotate(180,124,64)">
+                            <line class="pl__line9" x1="124" y1="48" x2="124" y2="80" />
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+    @{
+        string url_curent = Context.Request.Path.ToString();
+        string url_curentC = url_curent.Substring(url_curent.IndexOf("/"));
+    }
+    @if (User.Identity.IsAuthenticated && (url_curent != "/" && url_curent != "/TrangChu/BanDoCayXanhWeb" && url_curent != "/TrangChu/PhanAnh" && url_curent != "/TrangChu/TinTuc" && url_curent != "/TrangChu/DanhMuc" && url_curent != "/Home/ChuyenTrangTinTuc" && url_curent != "/TrangChu/CayCamTrong" && url_curent != "/Home/ChuyenTrangCayXanhTrangChu" && url_curent != "/Home/DanhMuc" && url_curent != "/Home/ChiTietPhanAnh"))
+        {
+     @*    var token = Context.Request.Cookies["TokenJWT"];
+        if (!string.IsNullOrEmpty(token))
+        { *@
+
+            <div id="wrapper">
+                @await Component.InvokeAsync("Menuleft")
+            <div class="content-wrapper">
+                <div class="toggleAdmin">
+                    <div class="titlePage">
+                        <div class="panelRight">
+                            <a id="btnToggle" class="btn-toggle" data-widget="pushmenu" href="#" role="button">
+                                <span class="fluent-ui fluent-ui-regular icon-panel"></span>
+                            </a>
+                            <div class="titleMenu"></div>
+                        </div>
+                    </div> 
+                    <div class="administrator">
+                        <div class="navAdmin">
+                            @*<div class="dropdown gr-dropdown">
+                                <i class="icon-dropdown-add icon-ic_fluent_add_24_filled" href="#" role="button" aria-expanded="false"></i>
+                                <ul class="dropdown-menu group-dropdown-menu">
+                                    <li><a class="dropdown-item" href="/KhachHang">Thêm mới khách hàng</a></li>
+                                    <li><a class="dropdown-item" href="/HopDong">Thêm mới hợp đồng</a></li>
+                                    <li><a class="dropdown-item" href="/XucTien">Thêm mới hoạt động chăm sóc khách hàng</a></li>
+                                    <li><a class="dropdown-item" href="/BaoHanhBaoTri">Thêm mới hoạt động bảo hành, bảo trì</a></li>
+                                </ul>
+                            </div>
+                            <div class="icon-notification">
+                                <i class="icon-notice icon icon-ic_fluent_alert_24_regular" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul id="danhSachCanhBao"class="dropdown-menu ds-canhBao">
+                                    <li><a class="dropdown-item" href="#"></a></li> 
+                                </ul>
+                                <span id="render-notice" class="notification"></span>
+                            </div>*@
+                            <span class="name-acc">@User.Identity.Name</span>
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
+                </div>
+                <div id="content">
+                    <div class="container-fluid">
+                        <main role="main" class="">
+                            @RenderBody()
+                        </main>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer text-muted">
+                <div class="container">
+                    @*&copy; 2023 - BusWebApplication - <a asp-area="" asp-page="/Privacy">Privacy</a>*@
+                </div>
+            </footer>
+            </div>
+@*         }
+        else
+        {
+            <h1>Phiên đăng nhập hết hạn, vui lòng đăng nhập lại</h1>
+            Context.Response.Redirect("/Identity/Account/Login");
+        } *@
+    }
+    else
+        {
+            <header>
+                <div class="groupbgMenu">
+                    <div class="change-container container-new container">
+                        <div class="groupMenu">
+                            <div class="menuLogo">
+                                <a href="/"><img src="https://huecit.vn/Portals/0/LogoHCIT_Tet_H64px.png?ver=2023-12-29-160419-570" /></a>
+                            </div>
+                            <div class="menu">
+                                <nav class="navbar toggle-menu navbar-expand-lg navbar-light bg-light">
+                                    <div class="container-fluid">
+                                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                            <li class="nav-item">
+                                                <a class="nav-link" aria-current="page" href="~/">Trang Chủ</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                @* <a class="nav-link" href="~/TrangChu/BanDoCayXanhWeb">Bản đồ cây xanh</a> *@
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="~/TrangChu/PhanAnh">Phản ánh</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="~/TrangChu/TinTuc">Tin tức</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="btn-login">
+                                <a class="search">
+                                    <img src="~/lib/images/icon-search.svg" />
+                                </a>
+                                <a class="admin" href="~/cms">
+                                    <img src="~/lib/images/icon-person-tree.svg" />
+                                </a>
+                                <a id="toggleclassmnu">
+                                    <img src="~/lib/images/menu.svg" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            @RenderBody()
+            <footer>
+                <div class="footerHome">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="nameAdd">
+                                    @* <img src="~/lib/images/logo_qlcx.svg" /> *@
+                                    <span class="bold-text">TRUNG TÂM CÔNG NGHỆ THÔNG TIN</span>
+                                    <span class="regular-text">Địa chỉ: 06 Lê lợi, Vĩnh Ninh, thành phố Huế, Việt Nam</span>
+                                    <span class="regular-text">Email: info@huecit.vn</span>
+                                    <span class="regular-text">Website: www.huecit.vn</span>
+                                </div>
+                            </div>
+                       @*      <div class="col-md-4">
+                                <div class="pull-right">
+                                    <div class="menu-footer">
+                                        <div>Tin tức</div>
+                                        <div>Bản đồ cảnh quan</div>
+                                        <div>Phản ánh</div>
+                                        <div>Thông tin cá nhân</div>
+                                    </div>
+                                </div>
+                            </div> *@
+                        </div>
+                        <div class="design-by-HueCIT">
+                            <div class="system-manage">
+                                <span>© 2024 Hệ thống Quản lý khách hàng</span>
+                            </div>
+                            <div class="tke-xaydung">
+                                <span class="designBuild">Thiết kế và xây dựng: <a>HueCIT</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        }
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+<script>
+    // var userName = '@User.Identity.Name';
+    // $(document).ready(function () {
+    //     console.log(123)
+    //     $.ajax({
+    //         url: APIURL + `/api/HopDongApi/danhsachhopdongnghiemthubynhanvien?NguoiPhuTrach=${userName}`,
+    //         "method": "GET",
+    //         "timeout": 0,
+    //         "headers": {
+    //             "accept": "*/*"
+    //         },
+    //         success: function (data) {
+    //               console.log(data,12123)
+    //             if (data.isSuccess && data.value.length > 0) {
+
+    //                 var html = '<li class="name-notice tt-KhachHang">Thông báo</li>';
+    //                 var count = 0;
+    //                 data.value.map(function (item) {
+                        
+    //                     let currentDate = getDate();
+    //                     // console.log(currentDate)
+    //                     // console.log(formatDateUpdate(new Date(item.ngayCanhBao)))
+                       
+    //                     if (currentDate.toString() >= formatDateUpdate(new Date(item.ngayCanhBao)).toString() && currentDate.toString() <= formatDateUpdate(new Date(item.ngayKetThuc)).toString() || (item.maBuoc != null && item.maBuoc != 4 && item.maBuoc != 5 && item.maBuoc != 7 && currentDate.toString() > formatDateUpdate(new Date(item.ngayKetThuc)).toString())) {
+                           
+    //                         html += `<li>
+    //                                     <div class="dropdown-item cus-notice-item" data-value='${item.maHopDong}'>
+    //                                         <a class="tenCanhBao tenHopDongDetails" href="/HopDong/ChiTietHopDong1?MaHopDong=${item.maHopDong}"> ${item.tenHopDong} </a>
+    //                                         <span class="ngayNghiemThu">Ngày nghiệm thu: ${item.ngayNghiemThu !=null? formatDateUpdate(new Date(item.ngayNghiemThu)): ""} </span>
+    //                                     </div>
+    //                                 </li>`
+    //                         if (item.daXem == 0) {
+    //                                     count++
+    //                                 }
+                    
+    //                         // console.log('Có hợp đồng cần nghiệm thu')
+    //                     } else {
+    //                         $("#render-notice").addClass('d-none')
+    //                         // console.log('Không có hợp đồng cần nghiệm thu')
+    //                     }
+                       
+
+
+    //                     // html += ` <div class="ck-trangThai1">
+    //                     //                 <input type="checkbox" value="${item.id}" id="${item.id}">
+    //                     //                 <label for="${item.id}">${item.name}</label>
+    //                     //             </div>`
+
+    //                 })
+    //                 if (count > 0) {
+    //                     $("#render-notice").text(count).removeClass('d-none')
+    //                 }else{
+    //                     $("#render-notice").addClass('d-none')
+    //                 }
+    //                 $("#danhSachCanhBao").html(html)
+    //                 // $(".trangThaiHopDong1").html(html);
+    //             }else{
+    //                 $("#danhSachCanhBao").html(`<li class="cus-notice-item" style="text-align:center;padding-top:8pc;">Không có thông báo</li>`)
+    //                 $("#render-notice").addClass('d-none')
+    //             }
+    //         },
+    //         error: function (err) {
+    //             console.log(err)
+    //         }
+    //     })
+    //     // $(document).on('click', '.dropdown-item', function () {
+    //     //     var valueTT = $(this).data('value');
+    //     //     console.log(valueTT)
+    //     // })
+     
+    // })
+    // //đã xem thông báo
+    // $(document).on('click', '.cus-notice-item', function () {
+    //     let maHopDong = $(this).data('value')
+    //     console.log(maHopDong)
+    //     let dataBuilder = {
+    //         "maHopDong": maHopDong,
+    //         "daXem": 1
+    //     }
+    //     $.ajax({
+    //         type: 'put',
+    //         async: false,
+    //         url: `${APIURL}/api/HopDongApi/HopDongDaXem`,
+    //         contentType: 'application/json;charset=utf-8',
+    //         data: JSON.stringify(dataBuilder),
+    //         success: function (data) {
+    //             console.log(data)
+    //         },
+    //         error: function (err) {
+    //             console.log(err)
+    //         }
+    //     })
+    // })
+    $(function () {
+        var url = window.location.pathname;
+        $('.menu').find(`a[href="${url}"]`).addClass('active');
+    });
+    $(function () {
+        var url = window.location.pathname;
+        if (url == '/TrangChu/TinTuc') {
+            $('.groupbgMenu').addClass('custom-menu')
+            $('.groupbgMenu').find('.change-container').removeClass('container-new').addClass('container');
+        }
+        
+    });
+
+    const preloaderElement = $('.preloader');
+    $(document).ready(function(){
+        preloaderElement.addClass('preloader-deactivate');
+    })
+
+    
+    $("#toggleclassmnu").on('click', function () {
+        $(".groupMenu .menu .navbar").toggleClass('toggle-menu')
+    })
+    
+</script>

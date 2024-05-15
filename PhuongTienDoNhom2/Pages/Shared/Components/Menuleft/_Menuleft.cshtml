@@ -1,0 +1,93 @@
+﻿
+@using Domain
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@model List<Domain.DTOs.ResponseDtos.MainMenu>
+@inject UserManager<AppUser> UserManager;
+
+
+@{
+    var i = Context.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+    string url_curent = Context.Request.Path.ToString();
+    string url_curentC = url_curent.Substring(url_curent.IndexOf("/"));
+    var role = await UserManager.GetRolesAsync(UserManager.FindByIdAsync(i).Result);
+}
+@if (User.Identity.IsAuthenticated)
+{
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <div class="sidebar">
+        <div class="logo-menuCMS">
+            <a href="~/" class="brand-link">
+                <div class="titleQuanLy">
+                    <img src="~/lib/images/logo-horizontal-white.svg" alt="AdminLTE Logo" class="big-logo brand-image img-circle">
+                    <img src="~/lib/images/mini-logo.svg" class="logo-tree-cms" />
+                </div>
+            </a>
+        </div>
+        <nav class="mt-2 custom-menuCMS">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @foreach (var d in Model)
+                {
+                    
+                    @if (d.SubMenus.Count() > 0)
+                        {
+                            string activeParent = "";
+                            string open = "";
+                            string pathh = d.Path.ToString();
+                            var s = url_curent.Split('/');
+                            string url = "/" + s[1];
+                            if (pathh == url)
+                            {
+                                open = "menu-is-opening menu-open";
+                                activeParent = "active";
+                            }
+                            <li class="nav-item @open">
+                                <a title="@d.MenuName" class="nav-link @activeParent">
+                               
+                                    <span class="fluent-ui fluent-ui-regular"></span>
+                                    <p>
+                                        @d.MenuName
+                                        <i class="icon-ic_fluent_chevron_down_24_regular chevronDown right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    @foreach (var c in d.SubMenus)
+                                    {
+                                        string path = c.DuongDan.ToString() + "/index";
+                                        string pathActive = c.DuongDan.ToString();
+                                        string active = pathActive == url_curent ? "active" : "";
+
+                                        <li class="nav-item">
+                                            <a asp-page="@path" class="nav-link @active">
+                                                <span class="fluent-ui fluent-ui-regular"></span>
+                                                <p>@c.TenNhom</p>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>       
+                    }
+                    else
+                    {
+                        string url_curentCs = url_curentC + "/index";
+                        
+                        string pattttttc = d.Path.ToString() + "/index";
+                       
+                        string activec = url_curentCs.Equals(pattttttc, StringComparison.InvariantCultureIgnoreCase) ? "active" : "";
+                        <li class="nav-item">
+                            <a title="@d.MenuName" asp-page="@pattttttc" class="nav-link  @activec">
+                                <span class="fluent-ui fluent-ui-regular"></span>
+                                <p>@d.MenuName</p>
+                            </a>
+                        </li>
+                    }
+
+                }
+
+            </ul>
+        </nav>
+    <div id="render-formLogin" class=""></div>
+    </div>
+</aside>
+}

@@ -1,0 +1,152 @@
+﻿@page
+@model PhuongTienDoNhom2.Pages.QuanLyDanhMuc.LinhVucDo.IndexModel
+@{
+}
+<div class="cus-form-general">
+    <div class="titleTable">
+        <div class="groupQuanLy">
+            <div class="titlePage filterDT">
+                <span class="TrangChu title-layout title-area">Danh mục lĩnh vực đo</span>
+            </div>
+        </div>
+        <div class="text-right">
+            <div class="group-button-action">
+                <button type="button" class="btn btn-success" data-toggle="modal" id="btn-themmoi">Thêm mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="table-tree-wrapper table-pagination-outside">
+        <div style="width:100%; margin:0 auto;">
+            <table id="dataGridDanhMucLinhVuc" class="table-border row-border compact dataTable data-tableCustom" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên lĩnh vực đo</th>
+                        <th>Mô tả</th>
+                        <th>Sử dụng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal add-->
+<div class="modal fade" id="modalLinhVucAdd" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm mới kiểu lĩnh vực đo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên lĩnh vực đo<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="tenLinhVucAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mô tả<span class="red-text"></span></label>
+                        <input type="text" class="form-control" id="moTaAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group radioCustom">
+                        <label class="editor-label">Sử dụng</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="radio" id="hoatDongLVDAdd_True" name="fav_language" value="1">
+                                <label for="hoatDongLVDAdd_True">Sử dụng</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="radio" id="dungHoatDongLVDAdd_False" name="fav_language" value="0">
+                                <label for="dungHoatDongLVDAdd_False">Không sử dụng</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-LVDAdd">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-LVDAdd">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal update-->
+<div class="modal fade" id="modalLinhVucUpdate" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" class="form-control" id="idLVDUpdate">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Chỉnh sửa kiểu lĩnh vực đo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên lĩnh vực đo<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="tenLinhVucUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mô tả<span class="red-text"></span></label>
+                        <input type="text" class="form-control" id="moTaUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group radioCustom">
+                        <label class="editor-label">Sử dụng</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="radio" id="hoatDongLVDUpdate_True" name="fav_language" value="1">
+                                <label for="hoatDongLVDUpdate_True">Sử dụng</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="radio" id="dungHoatDongLVDUpdate_False" name="fav_language" value="0">
+                                <label for="dungHoatDongLVDUpdate_False">Không sử dụng</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-LVDAdd">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-LVDUpdate">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* MODAL DELETE*@
+<div class="modal fade" id="modalDeleteLVD" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <span class="icon-warning"></span>
+                    <div class="modal-icon-delete">
+                        <i class="icon icon-ic_fluent_delete_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idLVDDelete">
+                    <div class="notiDelDn">Bạn có chắc chắn muốn xóa kiểu lĩnh vực đo</div>
+                    <h6 class="titleDnDelete" id="titleDel"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" id="delete_LVD" class="btn btn-unsetwidth btn-danger text-white">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/pages/QuanLyDanhMuc/LinhVucDo/index.js"></script>
+}

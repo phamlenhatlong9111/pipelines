@@ -1,0 +1,320 @@
+﻿@page
+@model PhuongTienDoNhom2.Pages.QuanLyToChucDonVi.QuyTrinhKDHCTN.IndexModel
+@{
+}
+
+
+<div class="cus-form-general">
+    <div class="titleTable">
+        <div class="groupQuanLy">
+            <div class="titlePage filterDT">
+                <span class="TrangChu title-layout title-area">Danh mục quy trình KĐHCTN công bố áp dụng</span>
+            </div>
+        </div>
+        <div class="text-right">
+            <div class="group-button-action">
+                <button type="button" class="btn btn-success" data-toggle="modal" id="ThemMoi">Thêm mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="table-tree-wrapper table-pagination-outside">
+        <div style="width:100%; margin:0 auto;">
+            <table id="dataGrid" class="table-border row-border compact dataTable data-tableCustom" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Stt</th>
+                        <th>Tên quy trình</th>
+                        <th>Số, ký hiệu</th>
+                        <th>Năm ban hành</th>
+                        <th>Tổ chức ban hành</th>
+                        <th>Lĩnh vực</th>
+                        <th>Tệp đính kèm</th>
+                        <th>Sử dụng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal add-->
+<div class="modal fade" id="modalAdd" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm mới quy trình KĐHCTN</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tổ chức KĐHCTN<span class="red-text"> *</span></label>
+                        <select id="toChucAdd">
+
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên quy trình<span class="red-text">*</span></label>
+                        <input type="text" class="form-control" id="tenQuyTrinhAdd" maxlength="200" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Số, ký hiệu<span class="red-text">*</span></label>
+                        <input type="text" class="form-control" id="soKyHieuAdd" maxlength="100" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Thời gian ban hành</label>
+                        <div class="input-group date datetimeLX">
+                            <input type="text" class="form-control" placeholder="dd/MM/yyyy" id="namBanHanh" autocomplete="off">
+                            <div class="input-group-addon input-group-append">
+                                <div class="input-group-text">
+                                    <i class="icon icon-ic_fluent_calendar_24_regular icon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tổ chức ban hành</label>
+                        <input type="text" class="form-control" id="toChucBanHanhAdd" maxlength="200" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Lĩnh vực<span class="red-text"> *</span></label>
+                        <select id="linhVucAdd">
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mô tả</label>
+                        <input type="text" class="form-control" id="moTaAdd" maxlength="500" />
+                    </div>
+                    <div class="group-button">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tệp đính kèm</label>
+                        <div class="group-button-action btn-add-file">
+                            <ul id="ul-file" class="cus-add-file"></ul>
+                            <button type="button" class="btn btn-outline-blue" id="btn-AddFile">Chọn tệp</button>
+                            <span class="dinhDang-file">.pdf | .docx | .xlsx</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group radioCustom">
+                        <label class="editor-label">Sử dụng</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="radio" id="hoatDongKieuAdd_True" name="fav_language" checked="true">
+                                <label for="hoatDongKieuAdd_True">Sử dụng</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="radio" id="dungHoatDongKieuAdd_False" name="fav_language">
+                                <label for="dungHoatDongKieuAdd_False">Không sử dụng</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-KieuAdd">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-Add">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal detail-->
+<div class="modal fade" id="modalDetail" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Chi tiết quy trình KĐHCTN</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tổ chức KĐHCTN</label>
+                        <label id="toChucDetail">
+                        </label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên quy trình</label>
+                        <label id="tenQuyTrinhDetail"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Số, ký hiệu</label>
+                        <label id="soKyHieuDetail"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Thời gian ban hành</label>
+                        <label id="thoiGianBanHanhDetail"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tổ chức ban hành</label>
+                        <label id="toChucBanHanhDetail"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Lĩnh vực</label>
+                        <label id="linhVucDetail"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mô tả</label>
+                        <label id="moTaDetail"></label>
+                    </div>
+                    <div class="col-md-12 form-group radioCustom">
+                        <label class="editor-label">Tình trạng</label>
+                        <label id="suDungDetail"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-KieuAdd">Hủy bỏ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal update-->
+<div class="modal fade" id="modalUpdate" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelUpdate"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <input type="hidden" id="maQuyTrinhUpdate" />
+                <input type="hidden" id="soKyHieuDetails" />
+                <input type="hidden" id="tepKemTheoDetails" />
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tổ chức KĐHCTN<span class="red-text"> *</span></label>
+                        <select id="toChucUpdate" disabled>
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên quy trình<span class="red-text">*</span></label>
+                        <input type="text" class="form-control" id="tenQuyTrinhUpdate" maxlength="200" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Số, ký hiệu<span class="red-text">*</span></label>
+                        <input type="text" class="form-control" id="soKyHieuUpdate" maxlength="100" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Thời gian ban hành</label>
+                        <div class="input-group date datetimeLX">
+                            <input type="text" class="form-control" placeholder="dd/MM/yyyy" id="namBanHanhUpdate" autocomplete="off">
+                            <div class="input-group-addon input-group-append">
+                                <div class="input-group-text">
+                                    <i class="icon icon-ic_fluent_calendar_24_regular icon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tổ chức ban hành</label>
+                        <input type="text" class="form-control" id="toChucBanHanhUpdate" maxlength="200" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Lĩnh vực<span class="red-text"> *</span></label>
+                        <select id="linhVucUpdate">
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mô tả</label>
+                        <input type="text" class="form-control" id="moTaUpdate" maxlength="500" />
+                    </div>
+                    <div class ="col-md-12 form-group" id="tepDinhKemDetail">
+                        <label for="tenTapChiAdd" class="editor-label">Tệp đính kèm</label>
+                        <ul id="list-file" class="group-button">
+                        </ul>
+                    </div>
+                    <div class="group-button" id="tepDinhKemUpdate">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tệp đính kèm</label>
+                        <div class="group-button-action btn-add-file">
+                            <ul id="ul-fileUpdate" class="cus-add-file"></ul>
+                            <button type="button" class="btn btn-outline-blue" id="btn-UpdateFile">Chọn tệp</button>
+                            <span class="dinhDang-file">.pdf | .docx | .xlsx</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group radioCustom">
+                        <label class="editor-label">Sử dụng</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="radio" id="hoatDongKieuAdd_TrueUpdate" name="fav_language1" checked="true">
+                                <label for="hoatDongKieuAdd_TrueUpdate">Sử dụng</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="radio" id="dungHoatDongKieuAdd_FalseUpdate" name="fav_language1">
+                                <label for="dungHoatDongKieuAdd_FalseUpdate">Không sử dụng</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-KieuAdd">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-Update">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Modal confirm clear file*@
+<div class="modal fade" id="modalUpdateFile" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <div class="modal-icon-delete">
+                        <i class="icon icon-ic_fluent_delete_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idFileDelete">
+                    <div class="notiDelDn">Bạn có chắc chắn muốn xóa file</div>
+                    <h6 class="titleDnDelete" id="titleFileDel"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" id="deleteFile" class="btn btn-unsetwidth btn-danger text-white">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Modal delete*@
+<div class="modal fade" id="modalDelete" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <div class="modal-icon-delete">
+                        <i class="icon icon-ic_fluent_delete_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idDelete">
+                    <div class="notiDelDn">Bạn có chắc chắn muốn xóa quy trình</div>
+                    <h6 class="titleDnDelete" id="titleDel"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" id="btnDelete" class="btn btn-unsetwidth btn-danger text-white">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/pages/QuanLyToChucDonVi/QuyTrinh/index.js"></script>
+}

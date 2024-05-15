@@ -1,0 +1,139 @@
+﻿@page
+@model PhuongTienDoNhom2.Pages.DoiMatKhau.IndexModel
+@{
+}
+<div class="backgroudchangePass">
+    <div class="cus-form-general">
+        <div class="loginCus">
+            <div class="loginLogo">
+                <img src="~/lib/images/logo-horizontal-white.svg" />
+            </div>
+            <div class="form-group">
+                <label class="editor-label">Nhập lại mật khẩu cũ</label>
+                <input type="password" class="form-control" id="mKCu" />
+            </div>
+            <div class="form-group">
+                <label class="editor-label">Nhập mật khẩu mới</label>
+                <input type="password" class="form-control" id="mKMoi" />
+            </div>
+            <div class="form-group">
+                <label class="editor-label">Nhập lại mật khẩu mới</label>
+                <input type="password" class="form-control" id="mKMoiReturn" />
+            </div>
+            <div class="group-button-action">
+                <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-Update-MatKhau">Đóng</button>
+                <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-Update-MatKhau">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Lấy tham số 'id' từ URL
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    var username = getParameterByName('userName');
+    var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    $(document).on('click', '#btn-save-Update-MatKhau', function () {
+        var mkCu = $('#mKCu').val();
+        var mkMoi = $('#mKMoi').val();
+        var mkMoiReturn = $('#mKMoiReturn').val();
+       
+        // console.log(userName)
+        $.ajax({
+            async: false,
+            url: `${APIURL}/api/NhanVienApi/KiemTraNhanVienPhongBan?UserName=${userName}`,
+            method: "GET",
+            timeout: 0,
+            headers: {
+                accept: "text/plain"
+            },
+            success: function (data) {
+                if (data.isSuccess && data.value.length > 0) {
+                    data.value.map((item) => {
+                        console.log(item.matKhau)
+                        if (checkEmptyBlank(mkCu)) {
+                            showNotify("Mật khẩu không được để trống", "danger")
+                            return
+                        } if (checkEmptyBlank(mkMoi)) {
+                            showNotify("Mật khẩu mới không được để trống", "danger")
+                            return
+                        }
+                        if (checkEmptyBlank(mkMoiReturn)) {
+                            showNotify("Nhập lại mật khẩu không được để trống", "danger")
+                            return
+                        }
+                        if (mkCu != item.matKhau) {
+                            showNotify("Mật khẩu cũ không đúng", "danger")
+    
+                            return;
+                        }
+                        if (!mkMoi.match(decimal)) {
+                            showNotify("Mật khẩu mới phải từ 8 đến 15 ký tự, trong đó có ít nhất một chữ thường, một chữ hoa, một chữ số và một ký tự đặc biệt", "danger")
+                            return;
+                        }
+                        if (mkMoi != mkMoiReturn) {
+                            showNotify("Mật khẩu mới không trùng khớp", "danger")
+                            return;
+                        } 
+                        if (mkCu == mkMoi) {
+                            showNotify("Mật khẩu cũ và mật khẩu mới phải khác nhau", "danger")
+                            return;
+                        }
+                        else {
+                            $.ajax({
+                                async: false,
+                                url: `${APIURL}/api/NhanVienApi/ChangePassword`,
+                                method: "POST",
+                                timeout: 0,
+                                headers: {
+                                    "accept": "*/*",
+                                    "Content-Type": "application/json"
+                                },
+                                data: JSON.stringify({
+                                    username: username,
+                                    oldPassword: mkCu,
+                                    newPassword: mkMoi
+                                }),
+                                success: function (data) {
+                                    console.log(data)
+                                    if (data.message == "Đổi mật khẩu thành công") {
+                                        showNotify("Đổi mật khẩu thành công", "success") 
+                                        window.location.href = '/cms';
+                                    } else {
+                                        showNotify("Đổi mật khẩu không thành công", "danger")
+                                    }
+                                },
+                                error: function (err) {
+                                    console.log(err)
+                                }
+                            })
+                        }
+                        // if (urlDetails != null && urlDetails != "") {
+                       
+                        // }
+                    })
+                } 
+
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+     
+        console.log(mkCu, mkMoi, mkMoiReturn);
+    });
+    // Sử dụng hàm để lấy giá trị 'id' từ URL
+    
+    
+</script>
+@* @section Scripts {
+    <script src="~/pages/quanlynhanvien/doimatkhau.js"></script>
+} *@

@@ -1,0 +1,126 @@
+﻿@page
+@model PhuongTienDoNhom2.Pages.QuanLyDanhMuc.NuocSanXuat.IndexModel
+@{
+}
+<div class="cus-form-general">
+    <div class="titleTable">
+        <div class="groupQuanLy">
+            <div class="titlePage filterDT">
+                <span class="TrangChu title-layout title-area">Danh mục nước sản xuất</span>
+            </div>
+        </div>
+        <div class="text-right">
+            <div class="group-button-action">
+                <button type="button" class="btn btn-success" data-toggle="modal" id="btn-themmoi">Thêm mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="table-tree-wrapper table-pagination-outside">
+        <div style="width:100%; margin:0 auto;">
+            <table id="dataGridDanhMucNoiSanXuat" class="table-border row-border compact dataTable data-tableCustom" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã quốc gia</th>
+                        <th>Tên quốc gia</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal add-->
+<div class="modal fade" id="modalQuocGiaAdd" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm mới quốc gia sản xuất</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mã quốc gia<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="maQuocGiaAdd" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên quốc gia<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="tenQuocGiaAdd" maxlength="100" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-QuocGiaAdd">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-QuocGiaAdd">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal update-->
+<div class="modal fade" id="modalQuocGiaUpdate" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" class="form-control" id="idQuocGiaUpdate">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Chỉnh sửa quốc gia sản xuất</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Mã quốc gia<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="maQuocGiaUpdate" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên quốc gia<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="tenQuocGiaUpdate" maxlength="100" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-QuocGiaUpdate">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-QuocGiaUpdate">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* MODAL DELETE*@
+<div class="modal fade" id="modalDeleteQuocGia" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <span class="icon-warning"></span>
+                    <div class="modal-icon-delete">
+                        <i class="icon icon-ic_fluent_delete_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idQuocGiaDelete">
+                    <div class="notiDelDn">Bạn có chắc chắn muốn xóa nước sản xuất</div>
+                    <h6 class="titleDnDelete" id="titleDel"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" id="delete_QuocGia" class="btn btn-unsetwidth btn-danger text-white">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/pages/QuanLyDanhMuc/NuocSanXuat/index.js"></script>
+}

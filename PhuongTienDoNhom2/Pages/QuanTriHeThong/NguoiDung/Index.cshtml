@@ -1,0 +1,331 @@
+﻿@page
+@model PhuongTienDoNhom2.Pages.QuanTriHeThong.NguoiDung.IndexModel
+@{
+}
+<div class="cus-form-general">
+    <div class="titleTable">
+        <div class="groupQuanLy">
+            <div class="titlePage">
+                <span class="TrangChu title-layout">Quản lý nhân sự</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-general">
+        <div class="titleTable area-button">
+            <div class="filter-datatable">
+            </div>
+            <div class="text-right">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-export-excel" data-toggle="modal" id="btnExportExcel">Xuất excel</button>
+                    @* <button type="button" class="btn btn-DongBo" data-toggle="modal" id="DongBoNhanSu">Đồng bộ</button> *@
+                    <button type="button" class="btn btn-success" data-toggle="modal" id="ThemNhanSu">Thêm mới</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-tree-wrapper table-pagination-outside table-NhanSu">
+            <div style="width:100%; margin:0 auto;">
+                <table id="dataTable-NhanSu" class="table-border row-border compact dataTable data-tableCustom table-widthAuto" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Stt</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Tên người dùng</th>
+                            <th>Chức vụ</th>
+                            <th>Sử dụng</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@* <!-- Modal Dong Bo-->
+<div class="modal fade" id="modalDongBo" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <div class="modal-dongBo">
+                        <i class="icon icon-ic_fluent_arrow_sync_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idPhongBanDelete">
+                    <div class="notiDelDn">
+                        Bạn có chắc chắn muốn đồng bộ tất cả các nhân sự
+                        từ hệ thống Quản lý văn bản và điều hành?
+                    </div>
+                    <h6 class="titleDnDelete" id="titlePhongBan"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" id="btn-Dongbo_NhanSu" class="btn btn-success">Đồng bộ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+<!-- Modal Edit Role-->
+<div class="modal fade" id="modalEditRoleNhanSu" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialogHD modal-dialogHDW" role="document">
+        <div class="modal-content modalDetail">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelRole">Phân quyền vai trò</h5>
+                <input type="hidden" class="form-control" id="hoatDongDetailOld">
+                <input type="hidden" class="form-control" id="idhoatDongDetail">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd" class="editViewDetail">
+                    <div class="info-role">
+                        <div class="form-group">
+                            <label for="nhaXuatBanAdd" class="editor-label">Tên đăng nhập</label>
+                            <input id="iddangnhaprole" type="text" class="form-control" hidden />
+
+                            <input id="tendangnhaprole" type="text" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label for="nhaXuatBanAdd" class="editor-label">Tên người dùng</label>
+                            <input id="tennguoidungrole" type="text" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="role-vaiTro">
+                        <label class="editor-label">Phân quyền vai trò</label>
+                        <div class="form-group trangThaiHopDong ttHopDong radioCustom trangThaiHopDong1">
+                        </div>
+                    </div>
+                    <div class="role-chucNang">
+                        <label class="editor-label">Phân quyền chức năng</label>
+                        <div class="trangThaiHopDong ttHopDong trangThaiHopDong2">
+                            @* <div class="ck-trangThai">
+                            <input type="checkbox" id="ckQuanTri">
+                            <label for="ckQuanTri">Thiết lập</label>
+                            </div>
+                            <div class="ck-trangThai ck-item">
+                            <input type="checkbox" id="ckPhongBan">
+                            <label for="ckPhongBan">Phòng ban</label>
+                            </div>
+                            <div class="ck-trangThai ck-item">
+                            <input type="checkbox" id="ckNhanSu">
+                            <label for="ckNhanSu">Nhân sự</label>
+                            </div>
+                            <div class="ck-trangThai ck-item">
+                            <input type="checkbox" id="ckDvTinh">
+                            <label for="ckDvTinh">Đơn vị tính</label>
+                            </div>
+                            <div class="ck-trangThai ck-item">
+                            <input type="checkbox" id="ckVaiTro">
+                            <label for="ckVaiTro">Vai trò</label>
+                            </div>
+                            <div class="ck-trangThai ck-item">
+                            <input type="checkbox" id="ckCbHopDong">
+                            <label for="ckCbHopDong">Cảnh báo hợp đồng</label>
+                            </div>
+                            <div class="ck-trangThai">
+                            <input type="checkbox" id="ckLanhDao">
+                            <label for="ckLanhDao">Khách hàng</label>
+                            </div>
+                            <div class="ck-trangThai">
+                            <input type="checkbox" id="ckTruongPhong">
+                            <label for="ckTruongPhong">Chính sách</label>
+                            </div> *@
+                        </div>
+                        @* <div class="col-md-6 trangThaiHopDong ttHopDong">
+                        <div class="ck-trangThai">
+                        <input type="checkbox" id="ckQuanTri">
+                        <label for="ckQuanTri">Danh mục</label>
+                        </div>
+                        <div class="ck-trangThai ck-item">
+                        <input type="checkbox" id="ckLanhDao">
+                        <label for="ckLanhDao">Nhóm khách hàng</label>
+                        </div>
+                        <div class="ck-trangThai ck-item">
+                        <input type="checkbox" id="ckLanhDao">
+                        <label for="ckLanhDao">Nhóm sản phẩm/dịch vụ</label>
+                        </div>
+                        <div class="ck-trangThai ck-item">
+                        <input type="checkbox" id="ckLanhDao">
+                        <label for="ckLanhDao">Sản phẩm/dịch vụ</label>
+                        </div>
+                        <div class="ck-trangThai ck-item">
+                        <input type="checkbox" id="ckHopDong">
+                        <label for="ckLanhDao">Loại hợp đồng</label>
+                        </div>
+                        <div class="ck-trangThai">
+                        <input type="checkbox" id="ckLanhDao">
+                        <label for="ckLanhDao">Hợp đồng</label>
+                        </div>
+                        <div class="ck-trangThai">
+                        <input type="checkbox" id="ckTruongPhong">
+                        <label for="ckTruongPhong">Thống kê</label>
+                        </div>
+                        </div> *@
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-hoatDongDetail">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-QlNhanSu">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal add-->
+<div class="modal fade" id="modalAddNhanSu" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm nhân sự</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tổ chức<span class="red-text"> *</span></label>
+                        <select id="toChucNhanVienAdd" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tên đăng nhập<span class="red-text"> *</span></label>
+                        <select id="tenDangNhapAdd" class="form-control">
+                        </select>
+                        @* <input type="text" placeholder="Nhập tên đăng nhập" id="tenDangNhapAdd" class="form-control" /> *@
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tên người dùng<span class="red-text"> *</span></label>
+                        <input type="text" placeholder="Nhập tên người dùng" id="tenNguoiDungAdd" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Mật khẩu<span class="red-text"> *</span></label>
+                        <input type="password" placeholder="Nhập mật khẩu" id="matKhau" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Nhập lại mật khẩu<span class="red-text"> *</span></label>
+                        <input type="password" placeholder="Nhập lại mật khẩu" id="nhapLaiMatKhau" class="form-control" />
+                    </div>
+             
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Chức vụ</label>
+                        <input type="text" placeholder="Nhập chức vụ" id="chucVuNhanVienAdd" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tệp đính kèm</label>
+                        <div class="group-button-action btn-add-file">
+                            <ul id="ul-file" class="cus-add-file add-file-modal"></ul>
+                            <button type="button" class="btn btn-outline-blue" id="btn-AddFile">Chọn tệp</button>
+                            <span class="dinhDang-file">.pdf | .docx | .xlsx</span>
+                        </div>
+                    </div>
+                    <div class="ck-trangThai">
+                        <input type="checkbox" id="suDungAdd">
+                        <label for="ckSuDung">Sử dụng</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btnHuyThemMoiLichSuSauBenh">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="BtnThemMoiNhanVien">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal update-->
+<div class="modal fade" id="modalUpdateNhanSu" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelUpdate">Cập nhật nhân sự</h5>
+                <input type="hidden" class="form-control" id="">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd" class="editViewDetail">
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tên đăng nhập<span class="red-text"> *</span></label>
+                        <input type="text" id="idTenDangNhapUpdate" class="form-control" hidden />
+                        <input type="text" id="tenDangNhapUpdate" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tên người dùng<span class="red-text"> *</span></label>
+                        <input type="text" id="tenNguoiDungUpdate" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Mật khẩu<span class="red-text"> *</span></label>
+                        <input type="password" id="matKhauUpdate" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Nhập lại mật khẩu<span class="red-text"> *</span></label>
+                        <input type="password" id="nhapLaiMatKhauUpdate" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tổ chức</label>
+                        <select id="toChucNhanVienUpdate" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Chức vụ</label>
+                        <input type="text" id="chucVuNhanVienUpdate" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tệp đính kèm</label>
+                        <div class="group-button-action btn-add-file">
+                            <ul id="ul-Updatefile" class="cus-add-file add-file-modal"></ul>
+                            <button type="button" class="btn btn-outline-blue" id="btn-UpdateFile">Chọn tệp</button>
+                            <span class="dinhDang-file">.jpg |.jpeg |.png</span>
+                        </div>
+                    </div>
+                    <div class="ck-trangThai">
+                        <input type="checkbox" id="suDungNhanVienUpdate">
+                        <label for="ckSuDung">Sử dụng</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-danhMucConUpdate">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="BtnCapNhatNhanVien">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete-->
+<div class="modal fade" id="modalDeleteNhanSu" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <div class="modal-icon-delete">
+                        <i class="icon icon-ic_fluent_delete_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idNhanSu">
+                    <div class="notiDelDn">Bạn có chắc chắn muốn xóa nhân sự này</div>
+                    <h6 class="titleDnDelete" id="titleNhanSu"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" id="delete_NhanSu" class="btn btn-unsetwidth btn-danger text-white">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/pages/ThietLap/NhanSu/index.js"></script>
+}

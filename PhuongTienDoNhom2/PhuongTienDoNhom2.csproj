@@ -1,0 +1,106 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\upload\chatluongmatnuoc\**" />
+    <Compile Remove="wwwroot\upload\hopdongthuchien\**" />
+    <Compile Remove="wwwroot\upload\hopdongthuekhoan\**" />
+    <Compile Remove="wwwroot\upload\hoso\**" />
+    <Compile Remove="wwwroot\upload\lichsusinhtruong\**" />
+    <Content Remove="wwwroot\upload\chatluongmatnuoc\**" />
+    <Content Remove="wwwroot\upload\hopdongthuchien\**" />
+    <Content Remove="wwwroot\upload\hopdongthuekhoan\**" />
+    <Content Remove="wwwroot\upload\hoso\**" />
+    <Content Remove="wwwroot\upload\lichsusinhtruong\**" />
+    <EmbeddedResource Remove="wwwroot\upload\chatluongmatnuoc\**" />
+    <EmbeddedResource Remove="wwwroot\upload\hopdongthuchien\**" />
+    <EmbeddedResource Remove="wwwroot\upload\hopdongthuekhoan\**" />
+    <EmbeddedResource Remove="wwwroot\upload\hoso\**" />
+    <EmbeddedResource Remove="wwwroot\upload\lichsusinhtruong\**" />
+    <None Remove="wwwroot\upload\chatluongmatnuoc\**" />
+    <None Remove="wwwroot\upload\hopdongthuchien\**" />
+    <None Remove="wwwroot\upload\hopdongthuekhoan\**" />
+    <None Remove="wwwroot\upload\hoso\**" />
+    <None Remove="wwwroot\upload\lichsusinhtruong\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
+    <PackageReference Include="MimeKit" Version="4.2.0" />
+    <PackageReference Include="QRCoder" Version="1.3.6" />
+    <PackageReference Include="Quartz" Version="3.7.0" />
+    <PackageReference Include="RestSharp.Newtonsoft.Json" Version="1.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="upload\cayxanh\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="wwwroot\lib\DataTables\ExportExcel\" />
+    <Folder Include="wwwroot\lib\leaflet\" />
+    <Folder Include="wwwroot\pages\CMS\" />
+    <Folder Include="wwwroot\pages\QuanLyDanhMuc\DonViDo\" />
+    <Folder Include="wwwroot\pages\ThietLap\NhanSu\" />
+    <Folder Include="wwwroot\upload\avatar\" />
+    <Folder Include="wwwroot\upload\chungchi\" />
+    <Folder Include="wwwroot\upload\nhanvienkdhctn\" />
+    <Folder Include="wwwroot\upload\phuongtienkiemdinh\" />
+    <Folder Include="wwwroot\upload\quytrinhapdung\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\PhuongTienDoNhom2.csproj.user" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Persistence\Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AdministrationOrganization">
+      <HintPath>C:\Users\longnn\Desktop\New folder\AdministrationOrganization.dll</HintPath>
+    </Reference>
+    <Reference Include="Common">
+      <HintPath>C:\Users\longnn\Desktop\New folder\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>C:\Users\longnn\Desktop\New folder\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Mvc">
+      <HintPath>C:\Users\longnn\Desktop\New folder\DotNetNuke.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Website">
+      <HintPath>..\..\..\..\SSOHueCITY\SSOHueCITY\DotNetNuke.Website.dll</HintPath>
+    </Reference>
+    <Reference Include="eGovData">
+      <HintPath>C:\Users\longnn\Desktop\New folder\eGovData.dll</HintPath>
+    </Reference>
+    <Reference Include="EsbUsers.Sso">
+      <HintPath>..\..\..\..\SSOHueCITY\SSOHueCITY\EsbUsers.Sso.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>C:\Users\longnn\Desktop\New folder\RestSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

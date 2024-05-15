@@ -1,0 +1,547 @@
+﻿@page "/cms"
+@model PhuongTienDoNhom2.Pages.CMS.IndexModel
+<div class="cus-form-general form-general-home">
+  @*   <div class="titleTable">
+        <div class="groupQuanLy">
+            <div class="titlePage">
+                <span class="TrangChu title-layout">Danh sách hợp đồng</span>
+            </div>
+        </div>
+    </div> *@
+    <span class="TrangChu title-layout title-area">Trang chủ</span>
+    <div class="form-dashboard">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="/KhachHang/?add=1" class="item-dashboard">
+                    <span class="cus-icon icon-people fluent-ui fluent-ui-filled"></span>
+                    <div class="gr-title-ttkh">
+                        <span class="name-ttkh name-custom">123</span>
+                        <span class="name-ttkh">Tổ chức KĐHCTN</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/HopDong/ThemMoiHopDong" class="item-dashboard">
+                    <span class="cus-icon icon-clipboard fluent-ui fluent-ui-filled"></span>
+                    <div class="gr-title-ttkh">
+                        <span class="name-ttkh name-custom">456</span>
+                        <span class="name-ttkh">Phương tiện đo KĐHCTN</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <div class="item-dashboard" id="themkhachhang">
+                    <span class="cus-icon icon-person-sp fluent-ui fluent-ui-filled"></span>
+                    <div class="gr-title-ttkh">
+                        <span class="name-ttkh name-custom">789</span>
+                        <span class="name-ttkh">Cơ sở SDSXNK phương tiện đo</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="item-dashboard" id="ThemBaoHanhBaoTri">
+                    <span class="cus-icon icon-wrench fluent-ui fluent-ui-filled"></span>
+                    <div class="gr-title-ttkh">
+                        <span class="name-ttkh name-custom">012</span>
+                        <span class="name-ttkh">Nhân viên KĐHCTN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="form-general-db form-dashboard">
+        <div class="titleTable">
+            <div class="groupQuanLy">
+                <div class="titlePage">
+                    <span class="TrangChu title-layout">Hoạt động xúc tiến mới nhất</span>
+                </div>
+            </div>
+            <a href="/XucTien" class="view-more">
+                <span>Xem thêm</span>
+                <i class="icon-view-more icon-ic_fluent_arrow_right_24_filled"></i>
+            </a>
+        </div>
+        <div class="grttKhachHang thongKeHoatDongXucTien row">
+        </div>
+    </div>
+    <div class="form-general-db form-dashboard">
+        <div class="titleTable">
+            <div class="groupQuanLy">
+                <div class="titlePage">
+                    <span class="TrangChu title-layout">Khách hàng mới nhất</span>
+                </div>
+            </div>
+            <a href="/KhachHang" class="view-more">
+                <span>Xem thêm</span>
+                <i class="icon-view-more icon-ic_fluent_arrow_right_24_filled"></i>
+            </a>
+        </div>
+        <div class="grttKhachHang thongkeKhachHang row">
+        </div>
+    </div>*@
+    <div class="form-general form-dashboard">
+        <div class="titleTable">
+            <div class="groupQuanLy">
+                <div class="titlePage">
+                    <span class="TrangChu title-layout">Danh sách các yêu cầu KĐHCTN chưa tiếp nhận</span>
+                </div>
+            </div>
+            @*<a href="/HopDong" class="view-more">
+                <span>Xem thêm</span>
+                <i class="icon-view-more icon-ic_fluent_arrow_right_24_filled"></i>
+            </a>*@
+        </div>
+        <div class="table-tree-wrapper table-pagination-outside table-KhachHang">
+            <div style="width:100%; margin:0 auto;">
+                <table id="dataTableYCKĐHCTN" class="table-border row-border compact dataTable data-tableCustom tableCayXanh-border" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Stt</th>
+                            <th>Tên cơ sở</th>
+                            <th>Tên phương tiện</th>
+                            <th>Loại phương tiện</th>
+                            <th>Số sản xuất</th>
+                            <th>Ngày gửi</th>
+                            <th>Loại</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="form-general form-dashboard">
+        <div class="titleTable">
+            <div class="groupQuanLy">
+                <div class="titlePage">
+                    <span class="TrangChu title-layout">Danh sách các phương tiện KĐHCTN sắp hết hạn</span>
+                </div>
+            </div>
+            @*<a href="/HopDong" class="view-more">
+            <span>Xem thêm</span>
+            <i class="icon-view-more icon-ic_fluent_arrow_right_24_filled"></i>
+            </a>*@
+        </div>
+        <div class="table-tree-wrapper table-pagination-outside table-KhachHang">
+            <div style="width:100%; margin:0 auto;">
+                <table id="dataTableYCKĐHCTN" class="table-border row-border compact dataTable data-tableCustom tableCayXanh-border" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Stt</th>
+                            <th>Tên phương tiện</th>
+                            <th>Lĩnh vực đo</th>
+                            <th>Cơ sở sử dụng</th>
+                            <th>Tổ chức KĐHCTN</th>
+                            <th>Số tem kiểm định</th>
+                            <th>Thời hạn</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal add khách hàng quan xúc tiến-->
+<div class="modal fade" id="modalAddKhachHang" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialogDN" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm mới hoạt động xúc tiến</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="row">
+                        <div class="form-group col-md-12" id="selectOptionKhachHang">
+                            <label for="tenTapChiAdd" class="editor-label">Tên khách hàng<span class="red-text"> *</span></label>
+                            <select id="tenKhachHang" class="form-control">
+                            </select>
+                        </div>
+                        <div id="thongTinKhachHangThemMoi" class="d-none">
+                            <div class="tt-KhachHang name-table">Thông tin khách hàng</div>
+                            <div class="cus-table-add">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label class="editor-label">Tên khách hàng<span class="red-text"> *</span></label>
+                                            <input type="text" class="form-control" id="tenKhachHangThemMoi" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="editor-label">Nhóm khách hàng<span class="red-text"> *</span></label>
+                                            <select class="form-control" id="nhomKhachHangThemMoi"></select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="editor-label">Đại diện</label>
+                                            <input type="text" class="form-control" id="daiDienKhachHangThemMoi" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="editor-label">Chức vụ</label>
+                                            <input type="text" class="form-control" id="chucVuKhachHangThemMoi" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label class="editor-label">Địa chỉ<span class="red-text"> *</span></label>
+                                            <input type="text" class="form-control" id="diaChiKhachHangThemMoi" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="editor-label">Số điện thoại<span class="red-text"> *</span></label>
+                                            <input type="text" class="form-control" id="soDienThoaiKhachHangThemMoi" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="editor-label">Mã số thuế</label>
+                                            <input type="text" class="form-control" id="maSoThueKhachHangThemMoi" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="editor-label">Số tài khoản</label>
+                                            <input type="text" class="form-control" id="soTaiKhoanKhachHangThemMoi" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" id="selectOptionNguoiLienHe">
+                            <label for="tenTapChiAdd" class="editor-label">Tên người liên hệ<span class="red-text"> *</span></label>
+                            <select id="tenNguoiLienHe" class="form-control">
+                            </select>
+                        </div>
+                        @*thêm mới đầu mối cơ bản*@
+                        <div id="thongTinDauMoiThemMoi" class="d-none">
+                            <label class="editor-label">Thông tin đầu mối khách hàng</label>
+                            <div class="cus-table-add">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="tenTapChiAdd" class="editor-label">Họ và tên người liên hệ</label>
+                                            <input type="text" class="form-control" id="TenNguoiLienHeAdd" maxlength="50" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="nhaXuatBanAdd" class="editor-label">Giới tính</label>
+                                            <div class="radio-group radioCustom">
+                                                <input id="radio-female" type="radio" name="GioiTinhAdd" value="0">
+                                                <label class="rd-custom" for="radio-female">Nữ</label>
+                                                <input id="radio-male" type="radio" name="GioiTinhAdd" value="1">
+                                                <label class="rd-custom" for="radio-male">Nam</label>
+                                                <input id="radio-other" type="radio" name="GioiTinhAdd" value="2">
+                                                <label class="rd-custom" for="radio-other">Khác</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="nhaXuatBanAdd" class="editor-label">Số điện thoại</label>
+                                            <input type="text" class="form-control" id="SoDienThoaiNLHAdd" maxlength="30" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="thongTinSanPhamThemMoi" class="d-none">
+                            <div class="tt-KhachHang name-table">Thông tin sản phẩm</div>
+                            <div class="cus-table-add">
+                                <div class="form-group radioCustom">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <input type="radio" id="radioSpAdd" name="chooseTypeServiceAdd" value="true" checked />
+                                            <label for="radioSpAdd">Sản phẩm</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="radio" id="radioDvAdd" name="chooseTypeServiceAdd" value="false" />
+                                            <label for="radioDvAdd">Dịch vụ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="nameServiceAdd" class="editor-label">Tên sản phẩm<span class="red-text"> *</span></label>
+                                            <input type="text" class="form-control" placeholder="Nhập" id="nameServiceAdd">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="selectGroupServiceAdd" class="editor-label">Nhóm sản phẩm<span class="red-text"> *</span></label>
+                                            <select id="selectGroupServiceAdd" class="form-control"></select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="editor-label" for="priceAdd">Trị giá (nghìn đồng)</label>
+                                            <input type="text" class="form-control check-num" id="priceAdd" placeholder="10000" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="editor-label" for="maintenanceAdd">Hạn bảo hành (tháng)</label>
+                                            <input type="text" class="form-control check-num" id="maintenanceAdd" placeholder="24" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="selectTechnicalPersonAdd" class="editor-label">Người phụ trách<span class="red-text"> *</span></label>
+                                            <select id="selectTechnicalPersonAdd" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descriptionAdd" class="editor-label">Mô tả</label>
+                                    <textarea type="text" class="form-control" id="descriptionAdd" placeholder="Nhập mô tả"></textarea>
+                                </div>
+                                <div class="form-group radioCustom">
+                                    <div class="row">
+                                        <label for="radioSpAdd" class="editor-label">Trạng thái</label>
+                                        <div class="col-md-2">
+                                            <input type="radio" id="radioStatusYesAdd" name="chooseStatusServiceAdd" value="true" checked />
+                                            <label for="radioStatusYesAdd">Đang kinh doanh</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="radio" id="radioStatusNoAdd" name="chooseStatusServiceAdd" value="false" />
+                                            <label for="radioStatusNoAdd">Ngừng kinh doanh</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" id="selectOptionSanPham">
+                            <label for="nhaXuatBanAdd" class="editor-label">Tên sản phẩm<span class="red-text"> *</span></label>
+                            <select id="tenSanPham" class="form-control">
+                            </select>
+                        </div>
+
+                        @*                      <div class="form-group col-md-12">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tên nhân viên xúc tiến<span class="red-text"> *</span></label>
+                        <select id="tenNhanVienXucTien" class="form-control">
+                        </select>
+                        </div> *@
+                        <div class="form-group col-md-3">
+                            <label for="nhaXuatBanAdd" class="editor-label">Hoạt động xúc tiến<span class="red-text"> *</span></label>
+                            <select id="hoatDongXucTienAdd" class="form-control">
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="nhaXuatBanAdd" class="editor-label">Nội dung<span class="red-text"> *</span></label>
+                            <textarea id="noiDungXucTien" class="form-control" maxlength="4000"></textarea>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="nhaXuatBanAdd" class="editor-label">Ngày thực hiện<span class="red-text"> *</span></label>
+                            <div class="input-group date datetimeLX">
+                                <input type="text" class="form-control" placeholder="dd/MM/yyyy" id="ngayThucHienAdd" autocomplete="off">
+                                <div class="input-group-addon input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="icon icon-ic_fluent_calendar_24_regular icon-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group group-button col-md-12">
+                            <label for="nhaXuatBanAdd" class="editor-label">Tệp đính kèm</label>
+                            <div class="group-button-action btn-add-file">
+                                <ul id="ul-file" class="cus-add-file add-file-modal"></ul>
+                                <button type="button" class="btn btn-outline-blue" id="btn-AddFile">Chọn tệp</button>
+                                <span class="dinhDang-file">.pdf | .docx | .xlsx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btnHuyThemMoiLichSuSauBenh">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btnsaveKhachHangXucTienAdd">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal add lịch sử chăm sóc-->
+<div class="modal fade" id="modalAddBaoHanhBaoTri" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialogHD" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm mới lịch sử bảo hành bảo trì</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="tenTapChiAdd" class="editor-label">Tên hợp đồng đã nghiệm thu<span class="red-text"> *</span></label>
+                                <select id="tenHopDongDaNghiemThu" class="form-control">
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nhaXuatBanAdd" class="editor-label">Người liên hệ<span class="red-text"> *</span></label>
+                                <select id="nguoiLienHe" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="nhaXuatBanAdd" class="editor-label">Nội dung<span class="red-text"> *</span></label>
+                                <textarea id="noiDungTiepNhan" class="form-control" maxlength="4000"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="tenTapChiAdd" class="editor-label">Họ tên<span class="red-text"> *</span></label>
+                                <input type="text" class="form-control" id="hoTenADD">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="tenTapChiAdd" class="editor-label">Điện thoại<span class="red-text"> *</span></label>
+                                <input type="text" class="form-control" id="dienThoaiADD">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="tenTapChiAdd" class="editor-label">Hộp thư<span class="red-text"> *</span></label>
+                                <input type="text" class="form-control" id="hopThuADD">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="tenTapChiAdd" class="editor-label">Tổ chức<span class="red-text"> *</span></label>
+                                <input type="text" class="form-control" id="toChucADD">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="nhaXuatBanAdd" class="editor-label">Ngày phản ánh<span class="red-text"> *</span></label>
+                                <div class="input-group date datetimeLX">
+                                    <input type="text" class="form-control" placeholder="dd/MM/yyyy" id="ngayPhanAnhAdd" autocomplete="off">
+                                    <div class="input-group-addon input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="icon icon-ic_fluent_calendar_24_regular icon-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nhaXuatBanAdd" class="editor-label">Ngày kết thúc<span class="red-text"> *</span></label>
+                                <div class="input-group date datetimeLX">
+                                    <input type="text" class="form-control" placeholder="dd/MM/yyyy" id="ngayKetThucAdd" autocomplete="off">
+                                    <div class="input-group-addon input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="icon icon-ic_fluent_calendar_24_regular icon-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @*  <div class="col-md-6">
+                            <label for="tenTapChiAdd" class="editor-label">Tên khách hàng<span class="red-text"> *</span></label>
+                            <select id="tenKhachHang" class="form-control">
+                            </select>
+                            </div> *@
+             @*                <div class="col-md-6">
+                                <label for="nhaXuatBanAdd" class="editor-label">Người tiếp nhận<span class="red-text"> *</span></label>
+                                <select id="nguoiTiepNhan" class="form-control">
+                                </select>
+                            </div> *@
+                            <div class="col-md-6">
+                                <label for="nhaXuatBanAdd" class="editor-label">Người xử lý<span class="red-text"> *</span></label>
+                                <select id="nguoixuly" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @*  <div class="col-md-6">
+                            <label for="tenTapChiAdd" class="editor-label">Tên khách hàng<span class="red-text"> *</span></label>
+                            <select id="tenKhachHang" class="form-control">
+                            </select>
+                            </div> *@
+                            <div class="col-md-6">
+                                <label for="nhaXuatBanAdd" class="editor-label">Độ ưu tiên<span class="red-text"> *</span></label>
+                                <select id="doUuTienAdd" class="form-control">
+                                    <option value=''>Chọn</option>
+                                    <option value=0>Không quan trọng</option>
+                                    <option value=1>Bình thường</option>
+                                    <option value=2>Cao</option>
+                                    <option value=3>Khẩn cấp</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="tenTapChiAdd" class="editor-label">Kết quả xử lý:<span class="red-text"> *</span></label>
+                                <input type="text" class="form-control" id="ketQuaXyLyAdd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="nhaXuatBanAdd" class="editor-label">Loại:<span class="red-text"> *</span></label>
+                                <select id="loaiAdd" class="form-control">
+                                    <option value=''>Chọn</option>
+                                    <option value=1>Lỗi phần mềm</option>
+                                    <option value=2>Góp ý bổ sung tính năng</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nhaXuatBanAdd" class="editor-label">Độ chính xác phản ánh:<span class="red-text"> *</span></label>
+                                <select id="doChinhXacPhanAnhAdd" class="form-control">
+                                    <option value=''>Chọn</option>
+                                    <option value=1>Chính xác</option>
+                                    <option value=2>Chính xác một phần</option>
+                                    <option value=3>Lỗi khách quan do không đảm bảo môi trường vận hành</option>
+                                    <option value=4>Không phải lỗi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                    <div class="row">
+                    <div class="col-md-6">
+                    <label for="tenTapChiAdd" class="editor-label">Tên khách hàng<span class="red-text"> *</span></label>
+                    <select id="tenKhachHang" class="form-control">
+                    </select>
+                    </div>
+                    </div>
+                    </div>*@
+                    <div class="group-button">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tệp đính kèm</label>
+                        <div class="group-button-action btn-add-file">
+                            <ul id="ul-file" class="cus-add-file add-file-modal"></ul>
+                            <button type="button" class="btn btn-outline-blue" id="btn-AddFile">Chọn tệp</button>
+                            <span class="dinhDang-file">.pdf | .docx | .xlsx</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @*  <div class="col-md-6">
+                            <label for="tenTapChiAdd" class="editor-label">Tên khách hàng<span class="red-text"> *</span></label>
+                            <select id="tenKhachHang" class="form-control">
+                            </select>
+                            </div> *@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btnHuyThemMoiLichSuSauBenh">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btnsaveLichSuBaoTriChamSocAdd">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const IDUser = '@Model.IDUser'
+    const TokenJWT = '@Model.TokenJWT'
+    const urlDetailss = '@Url.Action("ThongTinDetailXucTien","XucTien")';
+    const urlDetails1 = '@Url.Action("ThongTinKhachHang","KhachHang")';
+</script>
+@section Scripts {
+    <script src="~/pages/cms/index.js"></script>
+    }

@@ -1,0 +1,120 @@
+﻿@page
+@model PhuongTienDoNhom2.Pages.QuanTriHeThong.VaiTro.IndexModel
+@{
+}
+<div class="cus-form-general">
+    <div class="titleTable">
+        <div class="groupQuanLy">
+            <div class="titlePage">
+                <span class="TrangChu title-layout">Quản lý vai trò</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-general">
+        <div class="titleTable area-button">
+            <div class="filter-datatable">
+            </div>
+            <div class="text-right">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-success" data-toggle="modal" id="ThemVaiTro">Thêm mới</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-tree-wrapper table-pagination-outside table-NhanSu">
+            <div style="width:100%; margin:0 auto;">
+                <table id="dataTable-VaiTro" class="table-border row-border compact dataTable data-tableCustom table-widthAuto" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Stt</th>
+                            <th>Tên vai trò</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal add-->
+<div class="modal fade" id="modalAddVaiTro" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm vai trò</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd">
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tên vai trò<span class="red-text"> *</span></label>
+                        <input type="text" placeholder="Nhập tên vai trò" id="tenVaiTroAdd" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btnHuyThemMoiLichSuSauBenh">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="ThemMoiVaiTro">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal update-->
+<div class="modal fade" id="modalUpdateVaiTro" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelUpdate">Cập nhật vai trò</h5>
+                <input type="hidden" class="form-control" id="">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div role="form" id="formXeAdd" class="editViewDetail">
+                    <div class="form-group">
+                        <label for="nhaXuatBanAdd" class="editor-label">Tên vai trò<span class="red-text"> *</span></label>
+                        <input type="text" id="IdVaiTroUpdate" class="form-control" hidden />
+                        <input type="text" id="tenVaiTroUpdate" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-danhMucConUpdate">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="CapNhatVaiTro">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete-->
+<div class="modal fade" id="modalDeleteVaiTro" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <div class="modal-icon-delete">
+                        <i class="icon icon-ic_fluent_delete_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idVaiTroDelete">
+                    <div class="notiDelDn">Bạn có chắc chắn muốn xóa vai trò</div>
+                    <h6 class="titleDnDelete" id="titleVaiTro"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" id="delete_VaiTro" class="btn btn-unsetwidth btn-danger text-white">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/pages/ThietLap/VaiTro/index.js"></script>
+}

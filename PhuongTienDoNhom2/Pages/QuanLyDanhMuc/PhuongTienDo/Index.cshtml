@@ -1,0 +1,235 @@
+﻿@page
+@model PhuongTienDoNhom2.Pages.QuanLyDanhMuc.PhuongTienDo.IndexModel
+@{
+}
+<div class="cus-form-general">
+    <div class="titleTable">
+        <div class="groupQuanLy">
+            <div class="titlePage filterDT">
+                <span class="TrangChu title-layout title-area">Danh mục phương tiện đo</span>
+            </div>
+        </div>
+        <div class="text-right">
+            <div class="group-button-action">
+                <button type="button" class="btn btn-success" data-toggle="modal" id="btn-themmoi">Thêm mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="table-tree-wrapper table-pagination-outside">
+        <div style="width:100%; margin:0 auto;">
+            <table id="dataGridPhuongTienDo" class="table-border row-border compact dataTable data-tableCustom" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên phương tiện đo</th>
+                        <th>Phê duyệt mẫu</th>
+                        <th>Kiểm định ban đầu</th>
+                        <th>Kiểm định định kỳ</th>
+                        <th>Kiểm định sau sửa chữa</th>
+                        <th>Chu kỳ kiểm định<br>(tháng)</th>
+                        <th>Đơn vị đo</th>
+                        <th>Sử dụng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal add-->
+<div class="modal fade" id="modalPhuongTienDoAdd" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialogDN" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Thêm mới phương tiện đo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên phương tiện đo<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" placeholder="Nhập phương tiện đo" id="tenPhuongTienDoAdd" maxlength="100" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Thuộc kiểu<span class="red-text"></span></label>
+                        <select id="kieuAdd" class="form-control"></select>
+                        @* <input type="text" class="form-control" id="" maxlength="100" /> *@
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Thuộc nước sản xuất<span class="red-text"></span></label>
+                        <select id="nuocSanXuatAdd" class="form-control"></select>
+                        @* <input type="text" class="form-control" id="" maxlength="100" /> *@
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label class="editor-label">Thuộc lĩnh vực</label>
+                        <select id="linhVucAdd" class="form-control"></select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Chu kỳ kiểm định (Tháng)<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" placeholder="Nhập số tháng" id="chuKyAdd" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label class="editor-label">Đơn vị đo</label>
+                        <select id="donViDoAdd" class="form-control" disabled></select>
+                    </div>
+                    <div class="col-md-6 form-group radioCustom">
+                        <label class="editor-label">Sử dụng</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="radio" id="hoatDongPhuongTienDoAdd_True" name="fav_language" value="1">
+                                <label for="hoatDongPhuongTienDoAdd_True">Sử dụng</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="radio" id="dungHoatDongPhuongTienDoAdd_False" name="fav_language" value="0">
+                                <label for="dungHoatDongPhuongTienDoAdd_False">Không sử dụng</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="tenTapChiAdd" class="editor-label">Biện pháp kiểm tra về đo lường<span class="red-text"></span></label>
+                        <div class="trangThaiHopDong">
+                            <div class="ck-trangThai1">
+                                <input type="checkbox" name="vehicle1" maxlength="100" value="1" id="vehicle1" />
+                                <label for="vehicle1">Phê duyệt mẫu</label>
+                            </div>
+                            <div class="ck-trangThai1">
+                                <input type="checkbox" name="vehicle2" maxlength="100" value="1" id="vehicle2" />
+                                <label for="vehicle2">Kiểm định ban đầu</label>
+                            </div>
+                            <div class="ck-trangThai1">
+                                <input type="checkbox" name="vehicle3" maxlength="100" value="1" id="vehicle3" />
+                                <label for="vehicle3">Kiểm định định kỳ</label>
+                            </div>
+                            <div class="ck-trangThai1">
+                                <input type="checkbox" name="vehicle4" maxlength="100" value="1" id="vehicle4" />
+                                <label for="vehicle4">Kiểm định sau sửa chữa</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-PhuongTienDoAdd">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-PhuongTienDoAdd">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Update-->
+<div class="modal fade" id="modalPhuongTienDoUpdate" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialogDN" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" class="form-control" id="idPhuongTienDoUpdate">
+                <input type="hidden" class="form-control" id="idMaNhom2">
+                <h5 class="loai-hinh-title" id="modalLabelAdd">Chỉnh sửa phương tiện đo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Tên phương tiện đo<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="tenPhuongTienUpdate" maxlength="100" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Thuộc kiểu<span class="red-text"></span></label>
+                        <select id="kieuUpdate" class="form-control"></select>
+                        @*  <input type="text" class="form-control" id="kieuUpdate" maxlength="100" /> *@
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Thuộc nước sản xuất<span class="red-text"></span></label>
+                        <select id="nuocSanXuatUpdate" class="form-control"></select>
+                        @* <input type="text" class="form-control" id="" maxlength="100" /> *@
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label class="editor-label">Thuộc lĩnh vực</label>
+                        <select id="linhVucUpdate" class="form-control"></select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="tenTapChiAdd" class="editor-label">Chu kỳ kiểm định (Tháng)<span class="red-text"> *</span></label>
+                        <input type="text" class="form-control" id="chuKyUpdate" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label class="editor-label">Đơn vị đo</label>
+                        <select id="donViDoUpdate" class="form-control" disabled></select>
+                    </div>
+                    <div class="col-md-6 form-group radioCustom">
+                        <label class="editor-label">Sử dụng</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="radio" id="hoatDongPhuongTienDoUpdate_True" name="fav_language" value="1">
+                                <label for="hoatDongPhuongTienDoUpdate_True">Sử dụng</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="radio" id="dungHoatDongPhuongTienDoUpdate_False" name="fav_language" value="0">
+                                <label for="dungHoatDongPhuongTienDoUpdate_False">Không sử dụng</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="tenTapChiAdd" class="editor-label">Biện pháp kiểm tra về đo lường<span class="red-text"></span></label>
+                        <div class="trangThaiHopDong">
+                            <div class="ck-trangThai1">
+                                <input type="checkbox" name="vehicle1Update" maxlength="100" value="1" id="vehicle1Update" />
+                                <label for="vehicle1Update">Phê duyệt mẫu</label>
+                            </div>
+                            <div class="ck-trangThai1">
+                                <input type="checkbox" name="vehicle2Update" maxlength="100" value="1" id="vehicle2Update" />
+                                <label for="vehicle2Update">Kiểm định ban đầu</label>
+                            </div>
+                            <div class="ck-trangThai1">
+                                <input type="checkbox" name="vehicle3Update" maxlength="100" value="1" id="vehicle3Update" />
+                                <label for="vehicle3Update">Kiểm định định kỳ</label>
+                            </div>
+                            <div class="ck-trangThai1">
+                                <input type="checkbox" name="vehicle4update" maxlength="100" value="1" id="vehicle4Update" />
+                                <label for="vehicle4Update">Kiểm định sau sửa chữa</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-close-form btn-outline-primary" data-bs-dismiss="modal" id="btn-huy-PhuongTienDoUpdate">Hủy bỏ</button>
+                    <button type="button" class="btn btn-submit-form btn-primary" id="btn-save-PhuongTienDoUpdate">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* MODAL DELETE*@
+<div class="modal fade" id="modalDeletePhuongTienDo" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-delete">
+            <div class="modal-header">
+                <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning" role="form">
+                    <span class="icon-warning"></span>
+                    <div class="modal-icon-delete">
+                        <i class="icon icon-ic_fluent_delete_24_regular"></i>
+                    </div>
+                    <input type="hidden" class="form-control" id="idPhuongTienDoDelete">
+                    <div class="notiDelDn">Bạn có chắc chắn muốn xóa phương tiện đo</div>
+                    <h6 class="titleDnDelete" id="titleDel"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="group-button-action">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" id="delete_PhuongTienDo" class="btn btn-unsetwidth btn-danger text-white">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/pages/QuanLyDanhMuc/PhuongTienDo/index.js"></script>
+}

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\longnn\Desktop\buildCRM</_PublishTargetUrl>
+    <History>True|2024-04-09T00:52:36.5649499Z;True|2024-04-05T07:23:01.7372026+07:00;True|2024-03-20T08:54:38.7146545+07:00;True|2024-03-20T08:05:50.9399088+07:00;True|2024-03-19T14:40:54.5493276+07:00;True|2024-03-15T13:51:23.3406796+07:00;True|2024-03-15T08:34:21.4128694+07:00;True|2024-03-13T17:07:47.5076881+07:00;True|2024-03-13T08:11:36.5133109+07:00;True|2024-03-12T14:14:01.1849460+07:00;True|2024-03-12T14:11:13.2111743+07:00;True|2024-02-22T14:50:59.5087377+07:00;True|2024-02-20T17:59:06.4238349+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,85 @@
+﻿@using Domain;
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@inject IHttpContextAccessor _httpContext
+
+@{
+    //var user = await UserManager.FindByIdAsync(_httpContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+}
+
+<div class="navbar-nav navbarCus">
+    <div class="dropdown">
+        <div class="userAcc dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-ic_fluent_chevron_down_24_regular chevronDown right"></i></div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @if (User.Identity.IsAuthenticated)
+            {
+                @*<div class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><span class="manageBus"></span><span class="title-manage"></span></a>
+                </div>*@
+
+                <div class="btn-logout">
+
+                    <button type="submit" class="btn btn-link text-dark btn-changePassWord popup-login">
+                        <i class="icon-log-out icon-ic_fluent_arrow_sync_checkmark_24_regular"></i>
+                        <span>Đổi mật khẩu</span>
+                    </button>
+                 
+                    <form class="btn-log-out" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Identity/Account/Login", new { area = "" })" method="post">
+                        <button type="submit" class="btn btn-link text-dark popup-login">
+                            <i class="icon-log-out icon-ic_fluent_sign_out_24_regular"></i>
+                            <span>Đăng xuất</span>
+                        </button>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </div>
+            }
+    </div>
+    </div>
+</div>
+<script>
+    // const urlDetails = '@Url.Action("ThongTinDetail","XucTien")';
+    var url = window.location;
+    // URL API
+    var APIURL = url.protocol + "//" + url.hostname + ":" + url.port;
+    
+    //đã xem thông báo
+    $(document).on('click', '.btn-changePassWord', function () {
+        var userName = '@User.Identity.Name';
+        console.log(userName)
+        $.ajax({
+            async: false,
+            url: `${APIURL}/api/NhanVienApi/KiemTraNhanVienPhongBan?UserName=${userName}`,
+            method: "GET",
+            timeout: 0,
+            headers: {
+                accept: "text/plain"
+            },
+            success: function (data) {
+                if (data.isSuccess && data.value.length > 0) {
+                    data.value.map((item) => {
+                        
+                        // if (urlDetails != null && urlDetails != "") {
+                            window.location.href = '/DoiMatKhau?userName=' + item.username;
+                        // }
+                    })
+                } else {
+                    alert("Tài khoản của bạn không đổi được mật khẩu")
+                }
+                
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    })
+</script>
